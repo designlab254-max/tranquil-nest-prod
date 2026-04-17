@@ -37,14 +37,16 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
   const filename = uniqueSuffix + path.extname(file.originalname);
 
   try {
+    console.log('Attempting to upload file...');
     await pool.query(
       'INSERT INTO uploaded_files (filename, mime_type, data) VALUES ($1, $2, $3)',
       [filename, file.mimetype, file.buffer]
     );
+    console.log('Successfully saved file to DB:', filename);
     const imageUrl = `/uploads/${filename}`;
     res.json({ imageUrl });
   } catch (dbErr) {
-    console.error('Failed to save image:', dbErr);
-    res.status(500).json({ error: 'Failed to save image to database' });
+    console.error('FAILED TO SAVE IMAGE TO DATABASE. Error details:', dbErr);
+    res.status(500).json({ error: 'Failed to save image to database', details: String(dbErr) });
   }
 }
