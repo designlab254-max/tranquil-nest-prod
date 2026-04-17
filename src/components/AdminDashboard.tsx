@@ -496,9 +496,9 @@ function BrandingItem({ label, value, onSave }: { label: string; value: string; 
 
     try {
       const res = await fetch('/api/upload', {
-        method: 'POST',
-        body: formData,
-      });
+  method: 'POST',
+  body: formData,
+});
       
       if (!res.ok) {
         const text = await res.text();
@@ -683,10 +683,10 @@ function EditForm({ item, onSave, onCancel }: { item: any; onSave: (updates: any
     formData.append('image', file);
 
     try {
-      const res = await fetch('/api/upload', {
-        method: 'POST',
-        body: formData,
-      });
+    const res = await fetch('/api/upload', {
+  method: 'POST',
+  body: formData,
+});
       
       if (!res.ok) {
         const text = await res.text();
