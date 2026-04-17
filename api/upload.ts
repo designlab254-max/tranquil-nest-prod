@@ -1,6 +1,6 @@
 import type { VercelRequest, VercelResponse } from '@vercel/node';
 import multer from 'multer';
-import { pool } from '../lib/db';
+import { pool } from './lib/db';
 import path from 'path';
 
 // Memory storage to handle files for Vercel V2 functions
